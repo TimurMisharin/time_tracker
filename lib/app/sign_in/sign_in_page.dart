@@ -61,10 +61,11 @@ class SignInPage extends StatelessWidget {
           SizedBox(
             height: 8.0,
           ),
-          SignInButton(
-            text: 'Sing in with email',
-            textColor: Colors.white,
-            color: Colors.teal[700],
+          SocialSignInButton(
+            text: 'email',
+            assertName: 'images/mail-logo.png',
+            textColor: Colors.black87,
+            color: Colors.white70,
             onPressed: () {},
           ),
           SizedBox(
@@ -72,7 +73,10 @@ class SignInPage extends StatelessWidget {
           ),
           Text(
             'OR',
-            style: TextStyle(fontSize: 14.0, color: Colors.black87),
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.black87,
+            ),
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -81,7 +85,7 @@ class SignInPage extends StatelessWidget {
           SignInButton(
             text: 'Go anonymous',
             textColor: Colors.black87,
-            color: Colors.white60,
+            color: Colors.blueAccent,
             onPressed: () {},
           ),
         ],

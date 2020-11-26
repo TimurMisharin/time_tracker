@@ -3,16 +3,20 @@ import 'package:time_tracker_flutter/common_widgets/custom_raised_button.dart';
 
 class SocialSignInButton extends CustomRaisedButton {
   SocialSignInButton({
-    @required String assertName,
-    @required String text,
+    @required String assertName, //must be included
+    @required String text, //must be included
     Color color,
     Color textColor,
-    @required VoidCallback onPressed,
-  }) : super(
+    @required VoidCallback onPressed, //must be included
+  })  : assert(text != null && assertName != null),
+        //stop execution if a boolean condition is false, available only on debug mode
+        super(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(assertName),
+              Image.asset(
+                assertName,
+              ),
               Text(
                 'Sing in with $text',
                 style: TextStyle(
