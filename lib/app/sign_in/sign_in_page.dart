@@ -16,6 +16,22 @@ class SignInPage extends StatelessWidget {
     }
   }
 
+  Future<void> _singInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
+    } catch (e) {
+      print('_singInWithGoogle exception: ${e.toString()}');
+    }
+  }
+
+  Future<void> _singInWithFacebook() async {
+    try {
+      await auth.signInWithFacebook();
+    } catch (e) {
+      print('_singInWithFacebook exception: ${e.toString()}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     //app layout
@@ -57,7 +73,7 @@ class SignInPage extends StatelessWidget {
             assertName: 'images/google-logo.png',
             textColor: Colors.black87,
             color: Colors.white,
-            onPressed: () {},
+            onPressed: _singInWithGoogle,
           ),
           SizedBox(
             height: 8.0,
@@ -67,7 +83,7 @@ class SignInPage extends StatelessWidget {
             assertName: 'images/facebook-logo.png',
             textColor: Colors.white,
             color: Color(0XFF334D92),
-            onPressed: () {},
+            onPressed: _singInWithFacebook,
           ),
           SizedBox(
             height: 8.0,
