@@ -65,70 +65,72 @@ class SignInPage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(16.0),
       //container child can be any widget in flutter
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          //sing in text
-          Text(
-            'Sign In',
-            textAlign: TextAlign.center,
-            //style text
-            style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600),
-          ),
-          // to add space between containers
-          SizedBox(
-            height: 48.0,
-          ),
-          //material button
-          SocialSignInButton(
-            text: 'Google',
-            assertName: 'images/google-logo.png',
-            textColor: Colors.black87,
-            color: Colors.white,
-            onPressed: _singInWithGoogle,
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          SocialSignInButton(
-            text: 'Facebook',
-            assertName: 'images/facebook-logo.png',
-            textColor: Colors.white,
-            color: Color(0XFF334D92),
-            onPressed: _singInWithFacebook,
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          SocialSignInButton(
-            text: 'email',
-            assertName: 'images/mail-logo.png',
-            textColor: Colors.black87,
-            color: Colors.white70,
-            onPressed: () => _signInWithEmail(context),
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          Text(
-            'OR',
-            style: TextStyle(
-              fontSize: 14.0,
-              color: Colors.black87,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            //sing in text
+            Text(
+              'Sign In',
+              textAlign: TextAlign.center,
+              //style text
+              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.w600),
             ),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 8.0,
-          ),
-          SignInButton(
-            text: 'Go anonymous',
-            textColor: Colors.black87,
-            color: Colors.blueAccent,
-            onPressed: _singInAnonymously,
-          ),
-        ],
+            // to add space between containers
+            SizedBox(
+              height: 48.0,
+            ),
+            //material button
+            SocialSignInButton(
+              text: 'Google',
+              assertName: 'images/google-logo.png',
+              textColor: Colors.black87,
+              color: Colors.white,
+              onPressed: _singInWithGoogle,
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            SocialSignInButton(
+              text: 'Facebook',
+              assertName: 'images/facebook-logo.png',
+              textColor: Colors.white,
+              color: Color(0XFF334D92),
+              onPressed: _singInWithFacebook,
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            SocialSignInButton(
+              text: 'email',
+              assertName: 'images/mail-logo.png',
+              textColor: Colors.black87,
+              color: Colors.white70,
+              onPressed: () => _signInWithEmail(context),
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              'OR',
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 8.0,
+            ),
+            SignInButton(
+              text: 'Go anonymous',
+              textColor: Colors.black87,
+              color: Colors.blueAccent,
+              onPressed: _singInAnonymously,
+            ),
+          ],
+        ),
       ),
     );
   }
