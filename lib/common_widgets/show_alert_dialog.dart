@@ -22,7 +22,7 @@ Future<bool> showAlertDialog(BuildContext context,
               child: Text(cancelActionText),
             ),
           FlatButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => Navigator.of(context).pop(true),
               child: Text(defaultActionText))
         ],
       ),
@@ -40,8 +40,9 @@ Future<bool> showAlertDialog(BuildContext context,
             child: Text(cancelActionText),
           ),
         CupertinoDialogAction(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(defaultActionText))
+          onPressed: () => Navigator.of(context).pop(true),
+          child: Text(defaultActionText),
+        )
       ],
     ),
   );
