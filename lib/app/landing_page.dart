@@ -24,7 +24,7 @@ class LandingPage extends StatelessWidget {
           if (user != null && user.uid.isNotEmpty) {
             return HomePage();
           } else {
-            return SignInPage();
+            return SignInPage.create(context);
           }
         }
       },
