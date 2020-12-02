@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter/common_widgets/show_alert_dialog.dart';
 import 'package:time_tracker_flutter/services/auth.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key, @required this.auth}) : super(key: key);
-
-  final AuthBase auth;
-
-  Future<void> _singOut() async {
+  Future<void> _singOut(BuildContext context) async {
     try {
+      final auth = Provider.of<AuthBase>(context, listen: false);
       await auth.signOut();
     } catch (e) {
       print('_singInAnonymously exception: ${e.toString()}');
+    }
+  }
+
+  Future<void> _confirmSignOut(BuildContext context) async {
+    final didRequestSignOut = await showAlertDialog(context,
+        title: 'Log out',
+        content: 'Are you sure that you want to logout?',
+        cancelActionText: 'Cancel',
+        defaultActionText: 'Logout');
+    if (didRequestSignOut == true) {
+      _singOut(context);
     }
   }
 
@@ -21,7 +31,7 @@ class HomePage extends StatelessWidget {
         title: Text('Home page'),
         actions: [
           FlatButton(
-            onPressed: _singOut,
+            onPressed: () => _confirmSignOut(context),
             child: Text(
               'Logout',
               style: TextStyle(fontSize: 18.0, color: Colors.white70),

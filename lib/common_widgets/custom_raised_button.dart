@@ -22,6 +22,7 @@ class CustomRaisedButton extends StatelessWidget {
       child: RaisedButton(
         child: child,
         color: color,
+        disabledColor: color,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(
@@ -30,9 +31,7 @@ class CustomRaisedButton extends StatelessWidget {
           ),
         ),
         //if is null button is disabled
-        onPressed: () {
-          onPressed();
-        },
+        onPressed: onPressed,
       ),
     );
   }
