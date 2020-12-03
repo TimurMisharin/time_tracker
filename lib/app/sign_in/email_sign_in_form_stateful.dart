@@ -6,14 +6,16 @@ import 'package:time_tracker_flutter/common_widgets/form_submit_button.dart';
 import 'package:time_tracker_flutter/common_widgets/show_exception_alert_dialog.dart';
 import 'package:time_tracker_flutter/services/auth.dart';
 
-enum EmailSignInFormType { singIn, register }
+import 'email_sign_in_model.dart';
 
-class EmailSignInForm extends StatefulWidget with EmailAndPasswordValidators {
+class EmailSignInFormStateful extends StatefulWidget
+    with EmailAndPasswordValidators {
   @override
-  _EmailSignInFormState createState() => _EmailSignInFormState();
+  _EmailSignInFormStatefulState createState() =>
+      _EmailSignInFormStatefulState();
 }
 
-class _EmailSignInFormState extends State<EmailSignInForm> {
+class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -23,8 +25,7 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   String get _email => _emailController.text;
 
   String get _password => _passwordController.text;
-
-  EmailSignInFormType _formType = EmailSignInFormType.singIn;
+  EmailSignInFormType _formType = EmailSignInFormType.signIn;
   bool _submitted = false;
   bool _isLoading = false;
 
@@ -37,14 +38,14 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
     super.dispose();
   }
 
-  void _submit() async {
+  Future<void> _submit() async {
     setState(() {
       _submitted = true;
       _isLoading = true;
     });
     final auth = Provider.of<AuthBase>(context, listen: false);
     try {
-      if (_formType == EmailSignInFormType.singIn) {
+      if (_formType == EmailSignInFormType.signIn) {
         await auth.signInWithEmailAndPassword(_email, _password);
       } else {
         await auth.createUserWithEmailAndPassword(_email, _password);
@@ -74,9 +75,9 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   void _toggleFormType() {
     setState(() {
       _submitted = false;
-      _formType = _formType == EmailSignInFormType.singIn
+      _formType = _formType == EmailSignInFormType.signIn
           ? EmailSignInFormType.register
-          : EmailSignInFormType.singIn;
+          : EmailSignInFormType.signIn;
     });
     _emailController.clear();
     _passwordController.clear();
@@ -124,10 +125,10 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
   }
 
   List<Widget> _buildChildren() {
-    final primaryText = _formType == EmailSignInFormType.singIn
+    final primaryText = _formType == EmailSignInFormType.signIn
         ? 'Sign in'
         : 'Create an account';
-    final secondaryText = _formType == EmailSignInFormType.singIn
+    final secondaryText = _formType == EmailSignInFormType.signIn
         ? 'Need an account? Register'
         : 'Have an account? Sign in';
 
